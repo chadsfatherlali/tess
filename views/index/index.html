@@ -1,0 +1,17 @@
+{% extends "../../assets/templates/basico.html" %}
+
+{% block title %}
+Catálogo de productos | Tess
+{% endblock %}
+
+{% block content %}
+<div>
+	<section>
+		<div ng-include="'assets/ngviews/index/index.html'"></div>
+	</section>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/assets/ngviews/index/indexController.js"></script>
+{% endblock %}

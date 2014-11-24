@@ -1,0 +1,26 @@
+{% extends "../../assets/templates/basico.html" %}
+
+{% block title %}
+CMS | Tess
+{% endblock %}
+
+{% block content %}
+<div>
+	{% if islogin %}
+	<section>
+		<div ng-include="'/assets/ngviews/cms/cms.html'"></div>
+	</section>
+
+	{% else %}
+		<form method="GET" action="/cms/">
+			<input type="text" name="usuario" id="usuario" placeholder="Usuario" />
+			<input type="password" name="password" id="password" placeholder="Cotraseña" />
+			<input type="submit" value="INGRESAR" />
+		</form>
+	{% endif %}
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/assets/ngviews/cms/cmsController.js"></script>
+{% endblock %}

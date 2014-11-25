@@ -2,8 +2,8 @@ var mongoose = require("mongoose");
 
 schemas: {
 	var CategoriaSchema = mongoose.Schema({
-			categoria: "String"
-		});
+		categoria: "String"
+	});
 
 	var TipoProductoSchema = mongoose.Schema({
 		producto: "String"

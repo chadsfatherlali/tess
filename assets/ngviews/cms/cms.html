@@ -261,7 +261,7 @@
 								<th>Acciones</th>
 							</tr>
 						</thead>
-						<tbody ng-repeat="producto in productos">
+						<tbody ng-repeat="producto in productos track by $index">
 							<tr>
 								<th>[[producto.referencia]]</th>
 								<th>[[producto.categoria]]</th>
@@ -269,7 +269,7 @@
 								<th><img style="width:10%;" class="img-responsive" ng-src="[[producto.archivo]]"></th>
 								<th>
 									<label class="btn btn-warning" ng-click="editarProductos(producto)">Editar</label>
-									<label class="btn btn-danger" ng-click="borrarProductos(producto)">Borrar</label>
+									<label class="btn btn-danger" ng-click="borrarProductos(producto, $event)">Borrar</label>
 								</th>
 							</tr>
 						</tbody>

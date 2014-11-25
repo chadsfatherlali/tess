@@ -40,7 +40,7 @@ funcionesRutas: {
           requirejs([
                __dirname + "/../views/especificaciones/especificacionesModule"
           ], function(especificacionesModule) {
-               if(req.params.tipo){
+               if(req.params.tipo) {
                     especificacionesModule.especificaciones[req.params.accion](req, function(response) {
                          res.json(response);
                     });                    

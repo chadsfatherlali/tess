@@ -22,8 +22,9 @@ exports.productos = function() {
 
 		borrar: function(req, callback) {
 			var REQ = req.query
-
+			console.log(REQ);
 			modelos.modelo("AltaProducto").find({referencia: REQ.referencia}).remove().exec(function(error, response) {
+				console.log("response", response);
 				if(error) return console.error(error);
 
 				if(callback) callback(response);

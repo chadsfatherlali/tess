@@ -139,7 +139,7 @@ _tess.controller("cms", function($rootScope, $scope, $routeParams, $location, $w
 		$scope.altaproducto = obj;
 	}
 
-	$scope.borrarProductos = function(obj) {
+	$scope.borrarProductos = function(obj, $event) {
 		$http({
 			method: "GET",
 			url: "/productos/borrar", 
@@ -150,6 +150,8 @@ _tess.controller("cms", function($rootScope, $scope, $routeParams, $location, $w
 				angular.forEach($scope.productos, function(value, key) {
 					if(JSON.stringify(value) == JSON.stringify(obj)) {
 						delete $scope.productos[key];
+
+						angular.element($event.target).parent().parent()[0].remove();
 					}
 				});
 			}

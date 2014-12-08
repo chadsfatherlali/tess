@@ -1,287 +1,287 @@
 <div ng-controller="cms">
-	<section id="altas" class="col-xs-12">
-		<accordion close-others="oneAtATime">
-			<accordion-group is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-				<accordion-heading>ALTAS EPECIFICACIONES:</accordion-heading>
-				
-				<div class="col-xs-6">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-	              				<h3 class="panel-title">CATEGORIA:</h3>
-	            			</div>
+    <section id="altas" class="col-xs-12">
+        <accordion close-others="oneAtATime">
+            <accordion-group is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                <accordion-heading>ALTAS EPECIFICACIONES:</accordion-heading>
 
-	            			<div class="panel-body">
-							<form id="categoriaforms" name="categoriaforms">
-								<input ng-init="categoria.tipo = 'Categoria'" type="hidden" />
-								<input class="form-control" ng-model="categoria.categoria" type="text" name="categoria" id="categoria" placeholder="Tipo de categoría" />
-								<input ng-click="submitform(categoria)" type="button" class="btn btn-sm btn-success" value="Dar de alta categoría" />
-							</form>	
-	            			</div>
-					</div>
-				</div>
-				
-				<div class="col-xs-6">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-	              				<h3 class="panel-title">TIPO PRODUCTO:</h3>
-	            			</div>
+                <div class="col-xs-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">CATEGORIA:</h3>
+                        </div>
 
-	            			<div class="panel-body">
-							<form id="tipoproductoform" name="tipoproductoform">
-								<input ng-init="tipoproducto.tipo = 'TipoProducto'" type="hidden" />
-								<input class="form-control" ng-model="tipoproducto.producto" type="text" name="producto" id="producto" placeholder="Tipo de producto" />
-								<input ng-click="submitform(tipoproducto)" type="button" class="btn btn-sm btn-success" value="Dar de alta tipo de producto" />
-							</form>
-	            			</div>
-					</div>
-				</div>
-				
-				<div class="col-xs-6">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-	              				<h3 class="panel-title">NUEVO COLOR:</h3>
-	            			</div>
+                        <div class="panel-body">
+                            <form id="categoriaforms" name="categoriaforms">
+                                <input ng-init="categoria.tipo = 'Categoria'" type="hidden" />
+                                <input class="form-control" ng-model="categoria.categoria" type="text" name="categoria" id="categoria" placeholder="Tipo de categoría" />
+                                <input ng-click="submitform(categoria)" type="button" class="btn btn-sm btn-success" value="Dar de alta categoría" />
+                            </form>	
+                        </div>
+                    </div>
+                </div>
 
-	            			<div class="panel-body">
-							<form id="nuevocolorform" name="nuevocolorform">
-								<input ng-init="nuevocolor.tipo = 'NuevoColor'" type="hidden" />
-								<input class="form-control" ng-model="nuevocolor.nombre"  type="text" name="nombre" id="nombre" placeholder="Nombre color" />
-								<input class="form-control" ng-model="nuevocolor.color" type="text" name="color" id="color" placeholder="Color hexadecimal" />
-								<input ng-click="submitform(nuevocolor)" type="button" class="btn btn-sm btn-success" value="Dar de alta color" />
-							</form>
-	            			</div>
-					</div>
-				</div>
-				
-				<div class="col-xs-6">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-	              				<h3 class="panel-title">NUEVA TALLA:</h3>
-	            			</div>
+                <div class="col-xs-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">TIPO PRODUCTO:</h3>
+                        </div>
 
-	            			<div class="panel-body">
-							<form id="nuevatallaform" name="nuevatallaform">
-								<input ng-init="nuevatalla.tipo = 'NuevaTalla'" type="hidden" />
-								<input class="form-control" ng-model="nuevatalla.nombre" type="text" name="nombre" id="nombre" placeholder="Nombre talla" />
-								<input class="form-control" ng-model="nuevatalla.medidas" type="text" name="medidas" id="medidas" placeholder="Medidas" />
-								<input ng-click="submitform(nuevatalla)" type="button" class="btn btn-sm btn-success" value="Dar de alta talla" />
-							</form>
-	            			</div>
-					</div>
-				</div>
-		    	</accordion-group>
+                        <div class="panel-body">
+                            <form id="tipoproductoform" name="tipoproductoform">
+                                <input ng-init="tipoproducto.tipo = 'TipoProducto'" type="hidden" />
+                                <input class="form-control" ng-model="tipoproducto.producto" type="text" name="producto" id="producto" placeholder="Tipo de producto" />
+                                <input ng-click="submitform(tipoproducto)" type="button" class="btn btn-sm btn-success" value="Dar de alta tipo de producto" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
-		    	<accordion-group>
-				<accordion-heading>ALTAS PRODUCTOS:</accordion-heading>
+                <div class="col-xs-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">NUEVO COLOR:</h3>
+                        </div>
 
-				<form id="altaproductoform" name="altaproductoform">
-					<input ng-init="altaproducto.tipo = 'AltaProducto'" type="hidden" />
+                        <div class="panel-body">
+                            <form id="nuevocolorform" name="nuevocolorform">
+                                <input ng-init="nuevocolor.tipo = 'NuevoColor'" type="hidden" />
+                                <input class="form-control" ng-model="nuevocolor.nombre"  type="text" name="nombre" id="nombre" placeholder="Nombre color" />
+                                <input class="form-control" ng-model="nuevocolor.color" type="text" name="color" id="color" placeholder="Color hexadecimal" />
+                                <input ng-click="submitform(nuevocolor)" type="button" class="btn btn-sm btn-success" value="Dar de alta color" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
-					<div>
-						<div class="panel panel-primary">
-							<div class="panel-heading">
-		              				<h3 class="panel-title">PRODUCTO</h3>
-		            			</div>
+                <div class="col-xs-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">NUEVA TALLA:</h3>
+                        </div>
 
-		            			<div class="panel-body">
-		            				<div class="col-xs-6" ng-if="categorias">
-		            					<h5>CATEGORIAS:</h5>
-									<select class="form-control" ng-model="altaproducto.categoria" name="categoria" id="categoria" placeholder="Escoja una">
-										<option ng-repeat="categoria in categorias">[[categoria.categoria]]</option>
-									</select>
-								</div>
+                        <div class="panel-body">
+                            <form id="nuevatallaform" name="nuevatallaform">
+                                <input ng-init="nuevatalla.tipo = 'NuevaTalla'" type="hidden" />
+                                <input class="form-control" ng-model="nuevatalla.nombre" type="text" name="nombre" id="nombre" placeholder="Nombre talla" />
+                                <input class="form-control" ng-model="nuevatalla.medidas" type="text" name="medidas" id="medidas" placeholder="Medidas" />
+                                <input ng-click="submitform(nuevatalla)" type="button" class="btn btn-sm btn-success" value="Dar de alta talla" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </accordion-group>
 
-								<div class="col-xs-6" ng-if="tiposproductos">
-									<h5>TIPO PRODUCTO:</h5>
-									<select class="form-control" ng-model="altaproducto.tipoproducto" name="tipoproducto" id="tipoproducto">
-										<option ng-repeat="tiposproducto in tiposproductos">[[tiposproducto.producto]]</option>
-									</select>
-								</div>
+            <accordion-group>
+                    <accordion-heading>ALTAS PRODUCTOS:</accordion-heading>
 
-								<div class="col-xs-12" ng-if="nuevatallas">
-									<h5>STOCKAJE:</h5>
-									<div class="table-responsive">
-										<table class="table">
-											<thead>
-												<tr>
-													<th>Medida</th>
-													<th>Colores</th>
-													<th>Cantidad</th>
-												</tr>
-											</thead>
-											<tbody ng-repeat="nuevatalla in nuevatallas">
-												<tr>
-													<th>
-														<label class="btn btn-primary" ng-click="llenarMedida(nuevatalla.nombre, nuevatalla.medidas)" ng-model="Model.phantom1" btn-checkbox>[[nuevatalla.nombre]]</label>
-													</th>
-													<th>
-														<label style="background:[[nuevocolor.color]];border-color:[[nuevocolor.color]];" class="btn btn-primary" ng-if="altaproducto.stockaje[nuevatalla.nombre]" ng-click="llenarColores(nuevatalla.nombre, nuevocolor.color, nuevocolor.nombre)" ng-repeat="nuevocolor in nuevocolors" ng-model="Model.phantom[$index]" btn-checkbox>[[nuevocolor.nombre]]</label>
-													</th>
-													<th>
-														<input class="form-control" ng-model="altaproducto.stockaje[nuevatalla.nombre].cantidad" ng-if="altaproducto.stockaje[nuevatalla.nombre]" type="tetidad" name="cantidad" id="cantidad" placeholder="Cantidad de stockaje"/>		
-													</th>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
+                <form id="altaproductoform" name="altaproductoform">
+                    <input ng-init="altaproducto.tipo = 'AltaProducto'" type="hidden" />
 
-								<div class="col-xs-6">
-									<h5>CARACTERISTICAS:</h5>
-									<input class="form-control" ng-model="altaproducto.caracteristicas" type="text" name="caracteristicas" id="caracteristicas" placeholder="ej: caracteristica1,caracteristica2"/>		
-								</div>
+                    <div>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">PRODUCTO</h3>
+                            </div>
 
-								<div class="col-xs-6">
-									<h5>SUBTITULOS:</h5>
-									<input class="form-control" ng-model="altaproducto.subtitulo" type="text" name="subtitulo" id="subtitulo" placeholder="ej: confort tira"/>
-								</div>
+                            <div class="panel-body">
+                                <div class="col-xs-6" ng-if="categorias">
+                                    <h5>CATEGORIAS:</h5>
+                                    <select class="form-control" ng-model="altaproducto.categoria" name="categoria" id="categoria" placeholder="Escoja una">
+                                        <option ng-repeat="categoria in categorias">[[categoria.categoria]]</option>
+                                    </select>
+                                </div>
 
-								<div class="col-xs-6">
-									<h5>REFERENCIA:</h5>
-									<input class="form-control" ng-model="altaproducto.referencia" type="text" name="referencia" id="referencia" placeholder="ej: TESS BRO1"/>
-								</div>
+                                <div class="col-xs-6" ng-if="tiposproductos">
+                                    <h5>TIPO PRODUCTO:</h5>
+                                    <select class="form-control" ng-model="altaproducto.tipoproducto" name="tipoproducto" id="tipoproducto">
+                                        <option ng-repeat="tiposproducto in tiposproductos">[[tiposproducto.producto]]</option>
+                                    </select>
+                                </div>
 
-								<div class="col-xs-6">
-									<h5>PRECIO:</h5>
-									<input class="form-control" ng-model="altaproducto.precio" type="text" name="precio" id="precio" placeholder="ej: 10.50"/>
-								</div>
+                                <div class="col-xs-12" ng-if="nuevatallas">
+                                    <h5>STOCKAJE:</h5>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Medida</th>
+                                                    <th>Colores</th>
+                                                    <th>Cantidad</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody ng-repeat="nuevatalla in nuevatallas">
+                                                <tr>
+                                                    <th>
+                                                        <label class="btn btn-primary" ng-click="llenarMedida(nuevatalla.nombre, nuevatalla.medidas)" ng-model="Model.phantom1" btn-checkbox>[[nuevatalla.nombre]]</label>
+                                                    </th>
+                                                    <th>
+                                                        <label style="background:[[nuevocolor.color]];border-color:[[nuevocolor.color]];" class="btn btn-primary" ng-if="altaproducto.stockaje[nuevatalla.nombre]" ng-click="llenarColores(nuevatalla.nombre, nuevocolor.color, nuevocolor.nombre)" ng-repeat="nuevocolor in nuevocolors" ng-model="Model.phantom[$index]" btn-checkbox>[[nuevocolor.nombre]]</label>
+                                                    </th>
+                                                    <th>
+                                                        <input class="form-control" ng-model="altaproducto.stockaje[nuevatalla.nombre].cantidad" ng-if="altaproducto.stockaje[nuevatalla.nombre]" type="tetidad" name="cantidad" id="cantidad" placeholder="Cantidad de stockaje"/>		
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
 
-								<div class="col-xs-12">
-									<h5>IMAGEN:</h5>
-									<input class="form-control" soltar-archivos="[image/png, image/jpeg, image/gif]" placeholder="Soltar Imagen" />
-								</div>
+                                <div class="col-xs-6">
+                                    <h5>CARACTERISTICAS:</h5>
+                                    <input class="form-control" ng-model="altaproducto.caracteristicas" type="text" name="caracteristicas" id="caracteristicas" placeholder="ej: caracteristica1,caracteristica2"/>		
+                                </div>
 
-								<div class="col-xs-12">
-									<input ng-click="submitform(altaproducto)" type="button" class="btn btn-sm btn-success" value="Dar de alta producto" />
-									<input ng-click="limipiarForm(altaproducto)" type="button" class="btn btn-sm btn-danger" value="Limpiar Formulario" />
-								</div>
-		            			</div>
-						</div>
-					</div>
-				</form>
-		    	</accordion-group>
-			
-			<accordion-group>
-				<accordion-heading>ESPECIFICACIONES:</accordion-heading>
+                                <div class="col-xs-6">
+                                    <h5>SUBTITULOS:</h5>
+                                    <input class="form-control" ng-model="altaproducto.subtitulo" type="text" name="subtitulo" id="subtitulo" placeholder="ej: confort tira"/>
+                                </div>
 
-				<div class="col-xs-12">
-					 <tabset>
-    						<tab heading="CATEGORIAS">
-							<div class="table-responsive">
-								<table class="table">
-									<thead>
-										<tr>
-											<th>Nombre</th>
-											<th>Acción</th>
-										</tr>
-									</thead>
-									<tbody ng-repeat="categoria in categorias">
-										<tr>
-											<th>[[categoria.categoria]]</th>
-											<th><label class="btn btn-danger">Borrar</label></th>
-										</tr>
-									</tbody>
-								</table>
-							</div>    							
-    						</tab>
+                                <div class="col-xs-6">
+                                    <h5>REFERENCIA:</h5>
+                                    <input class="form-control" ng-model="altaproducto.referencia" type="text" name="referencia" id="referencia" placeholder="ej: TESS BRO1"/>
+                                </div>
 
-    						<tab heading="TIPOS DE PRODUCTOS">
-							<div class="table-responsive">
-								<table class="table">
-									<thead>
-										<tr>
-											<th>Nombre</th>
-											<th>Acción</th>
-										</tr>
-									</thead>
-									<tbody ng-repeat="tiposproducto in tiposproductos">
-										<tr>
-											<th>[[tiposproducto.producto]]</th>
-											<th><label class="btn btn-danger">Borrar</label></th>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-    						</tab>
+                                <div class="col-xs-6">
+                                    <h5>PRECIO:</h5>
+                                    <input class="form-control" ng-model="altaproducto.precio" type="text" name="precio" id="precio" placeholder="ej: 10.50"/>
+                                </div>
 
-						<tab heading="COLORES">
-							<div class="table-responsive">
-								<table class="table">
-									<thead>
-										<tr>
-											<th>Nombre</th>
-											<th>Acción</th>
-										</tr>
-									</thead>
-									<tbody ng-repeat="nuevocolor in nuevocolors">
-										<tr>
-											<th>[[nuevocolor.nombre]] <i style="color:[[nuevocolor.color]];"class="glyphicon glyphicon-asterisk"></i></th>
-											<th><label class="btn btn-danger">Borrar</label></th>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-    						</tab>
+                                <div class="col-xs-12">
+                                    <h5>IMAGEN:</h5>
+                                    <input class="form-control" soltar-archivos="[image/png, image/jpeg, image/gif]" placeholder="Soltar Imagen" />
+                                </div>
 
-						<tab heading="TALLAS">
-							<div class="table-responsive">
-								<table class="table">
-									<thead>
-										<tr>
-											<th>Nombre</th>
-											<th>Medida</th>
-											<th>Acción</th>
-										</tr>
-									</thead>
-									<tbody ng-repeat="nuevatalla in nuevatallas">
-										<tr>
-											<th>[[nuevatalla.nombre]]</th>
-											<th>[[nuevatalla.medidas]]</th>
-											<th><label class="btn btn-danger" ng-click="borrarEspicificacion('NuevaTalla', nuevatalla)">Borrar</label></th>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-    						</tab>
-    					</tabset>
-				</div>
-			</accordion-group>
+                                <div class="col-xs-12">
+                                    <input ng-click="submitform(altaproducto)" type="button" class="btn btn-sm btn-success" value="Dar de alta producto" />
+                                    <input ng-click="limipiarForm(altaproducto)" type="button" class="btn btn-sm btn-danger" value="Limpiar Formulario" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </accordion-group>
 
-			<accordion-group>
-				<accordion-heading>PRODUCTOS:</accordion-heading>
+            <accordion-group>
+                <accordion-heading>ESPECIFICACIONES:</accordion-heading>
 
-				<div class="table-responsive">
-					<table class="table" ng-init="obtenerProductos(0, null)">
-						<thead>
-							<tr>
-								<th>Referencia</th>
-								<th>Categoria</th>
-								<th>Tipo</th>
-								<th>Imagen</th>
-								<th>Acciones</th>
-							</tr>
-						</thead>
-						<tbody ng-repeat="producto in productos track by $index">
-							<tr>
-								<th>[[producto.referencia]]</th>
-								<th>[[producto.categoria]]</th>
-								<th>[[producto.tipoproducto]]</th>
-								<th><img style="width:10%;" class="img-responsive" ng-src="[[producto.archivo]]"></th>
-								<th>
-									<label class="btn btn-warning" ng-click="editarProductos(producto)">Editar</label>
-									<label class="btn btn-danger" ng-click="borrarProductos(producto, $event)">Borrar</label>
-								</th>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</accordion-group>
-		</accordion>
-	</section>
+                <div class="col-xs-12">
+                    <tabset>
+                        <tab heading="CATEGORIAS">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody ng-repeat="categoria in categorias track by $index">
+                                        <tr>
+                                            <th>[[categoria.categoria]]</th>
+                                            <th><label class="btn btn-danger" ng-click="borrarEspicificacion('Categoria', categoria, $event)">Borrar</label></th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>    							
+                        </tab>
+
+                        <tab heading="TIPOS DE PRODUCTOS">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody ng-repeat="tiposproducto in tiposproductos track by $index">
+                                        <tr>
+                                            <th>[[tiposproducto.producto]]</th>
+                                            <th><label class="btn btn-danger" ng-click="borrarEspicificacion('TipoProducto', tipoproducto, $event)">Borrar</label></th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </tab>
+
+                           <tab heading="COLORES">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-repeat="nuevocolor in nuevocolors track by $index">
+                                            <tr>
+                                                <th>[[nuevocolor.nombre]] <i style="color:[[nuevocolor.color]];" class="glyphicon glyphicon-asterisk"></i></th>
+                                                <th><label class="btn btn-danger" ng-click="borrarEspicificacion('NuevoColor', nuevocolor, $event)">Borrar</label></th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                           </tab>
+
+                           <tab heading="TALLAS">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Medida</th>
+                                                <th>Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-repeat="nuevatalla in nuevatallas track by $index">
+                                            <tr>
+                                                <th>[[nuevatalla.nombre]]</th>
+                                                <th>[[nuevatalla.medidas]]</th>
+                                                <th><label class="btn btn-danger" ng-click="borrarEspicificacion('NuevaTalla', nuevatalla, $event)">Borrar</label></th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                           </tab>
+                   </tabset>
+                </div>
+            </accordion-group>
+
+            <accordion-group>
+                <accordion-heading>PRODUCTOS:</accordion-heading>
+
+                <div class="table-responsive">
+                    <table class="table" ng-init="obtenerProductos(0, null)">
+                        <thead>
+                            <tr>
+                                <th>Referencia</th>
+                                <th>Categoria</th>
+                                <th>Tipo</th>
+                                <th>Imagen</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="producto in productos track by $index">
+                            <tr>
+                                <th>[[producto.referencia]]</th>
+                                <th>[[producto.categoria]]</th>
+                                <th>[[producto.tipoproducto]]</th>
+                                <th><img style="width:10%;" class="img-responsive" ng-src="[[producto.archivo]]"></th>
+                                <th>
+                                    <label class="btn btn-warning" ng-click="editarProductos(producto)">Editar</label>
+                                    <label class="btn btn-danger" ng-click="borrarProductos(producto, $event)">Borrar</label>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </accordion-group>
+        </accordion>
+    </section>
 	
-	<div class="col-xs-12">
-		<h5>DATOS:</h5>
+    <div class="col-xs-12">
+        <h5>DATOS:</h5>
 		
-		<div class="well well-lg">[[altaproducto | json]]</div>
-	</div>
+        <div class="well well-lg">[[altaproducto | json]]</div>
+    </div>
 </div>

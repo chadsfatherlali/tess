@@ -2,7 +2,8 @@
 
 var _tess = angular.module("App", [
      "ngRoute",
-     "ui.bootstrap"
+     "ui.bootstrap",
+     "_directives_"
 ]);
 
 _tess.config([

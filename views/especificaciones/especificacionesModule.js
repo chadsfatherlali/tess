@@ -1,73 +1,97 @@
 console.log("============== ESPECIFICACIONES MODULE ==============");
 
 exports.especificaciones = function() {
-	var crypto = require("crypto");
-	var mongoose = require("mongoose");
-	var modelos = require("../../modelos");
-	var date = new Date();
+    var modelos = require("../../modelos");
 
-	return {
-		obtener: function(req, callback) {
-			var REQ = req.params;
+    return {
+        obtener: function(req, callback) {
+            var REQ = req.params;
 
-			modelos.modelo(REQ.tipo).find({}).exec(function(error, response) {
-				if(error) return console.error(error);
-				
-				if(callback) callback(response);
-			});
-		},
+            modelos.modelo(REQ.tipo).find({}).exec(function(error, response) {
+                if(error) return console.error(error);
 
-		alta: function(req, callback) {
-			var data = {};
-			var REQ = req.body;
+                if(callback) callback(response);
+            });
+        },
 
-			if(!REQ.referencia) {
-				console.log("HE ENTRADO POR AQUI");
-			}
+        alta: function(req, callback) {
+            var data = {};
+            var REQ = req.body;
 
-			else {
-				modelos.modelo(REQ.tipo).find({referencia: REQ.referencia}).exec(function(error, response) {
-					if(error) return console.error(error);
+            /*
+            Si no existe la referencia es el alta de una especificación.
+             */
+            if(!REQ.referencia) {
+                var tipo = REQ.tipo;
 
-					if(response.length > 0 && !REQ._id) {
-						data.success = false;
-						data.reason = "El producto ya existe";
-						
-						if(callback) callback(data);
-					}
+                delete REQ.tipo;
 
-					else {
-						modelos.modelo(REQ.tipo).create(REQ, function(error, response) {
-							if(error) {
-								try {
-									modelos.modelo(REQ.tipo).update({_id: REQ._id}, {$set: REQ}, function(err, res) {
-										if(err) return console.error(err);
-									});
-								}
+                modelos.modelo(tipo).find(REQ).exec(function(error, response) {
+                    if(error) return console.error(error);
 
-								catch(err) {
-									return console.error(err);	
-								}
-							}
+                    if(response.length > 0) {
+                        data.success = false;
+                        data.reason = "La referencia ya existe";
 
-							data.success = true;
-							data.reason = "Procesado correctamente";
+                        if(callback) callback(data);
+                    }
 
-							if(callback) callback(data);
-						});
-					}
-				});
-			}
-		},
+                    else {
+                        modelos.modelo(tipo).create(REQ, function(error, response) {
+                            if(error) return console.error(error);
 
-		borrar: function(req, callback) {
-			var REQ = req.query;
+                            data.success = true;
+                            data.reason = "Procesado correctamente";
 
-			modelos.modelo(req.params.tipo).find({_id: REQ._id}).remove().exec(function(error, response) {
-				if(error) return console.error(error);
+                            if(callback) callback(data);
+                        });
+                    }
+                });
+            }
 
-				if(callback) callback(response);
-			});
-		}
-	}
+            else {
+                modelos.modelo(REQ.tipo).find({referencia: REQ.referencia}).exec(function(error, response) {
+                    if(error) return console.error(error);
+
+                    if(response.length > 0 && !REQ._id) {
+                        data.success = false;
+                        data.reason = "El producto ya existe";
+
+                        if(callback) callback(data);
+                    }
+
+                    else {
+                        modelos.modelo(REQ.tipo).create(REQ, function(error, response) {
+                            if(error) {
+                                try {
+                                    modelos.modelo(REQ.tipo).update({_id: REQ._id}, {$set: REQ}, function(err, res) {
+                                        if(err) return console.error(err);
+                                    });
+                                }
+
+                                catch(err) {
+                                    return console.error(err);	
+                                }
+                            }
+
+                            data.success = true;
+                            data.reason = "Procesado correctamente";
+
+                            if(callback) callback(data);
+                        });
+                    }
+                });
+            }
+        },
+
+        borrar: function(req, callback) {
+            var REQ = req.query;
+
+            modelos.modelo(req.params.tipo).find({_id: REQ._id}).remove().exec(function(error, response) {
+                if(error) return console.error(error);
+
+                if(callback) callback(response);
+            });
+        }
+    };
 }();

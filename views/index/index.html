@@ -6,12 +6,28 @@ Catálogo de productos | Tess
 
 {% block content %}
 <div>
-	<section>
-		<div ng-include="'assets/ngviews/index/index.html'"></div>
-	</section>
+    <section>
+        <!-- <div ng-include="'assets/ngviews/index/index.html'"></div> -->
+        <div ng-controller="index">
+            <owl id="owl-demo" class="owl-carousel owl-theme">
+                <div class="item"><img src="/assets/imgs/outfit.jpg" alt="The Last of us"></div>
+                <div class="item"><img src="/assets/imgs/shaper.jpg" alt="GTA V"></div>
+            </owl>
+            
+            <div>Dentro de INDEX</div>
+        </div>
+    </section>
 </div>
 {% endblock %}
 
 {% block js %}
+<script>
+    /*$("#owl-demo").owlCarousel({
+        autoPlay: 3000,
+        slideSpeed: 300,
+        paginationSpeed: 400,
+        singleItem: true
+    });*/
+</script>
 <script src="/assets/ngviews/index/indexController.js"></script>
 {% endblock %}

@@ -1,17 +1,20 @@
 {
-  "name": "SocialTicTacToe",
-  "description": "Juego multijugar del clásico tres en raya.",
-  "version": "0.0.1",
-  "private": true,
-  "dependencies": {
-    "express": "4.x",
-    "mongoose": "*",
-    "swig": "*",
-    "requirejs": "*",
-    "body-parser": "*",
-    "crypto": "*"
-  },
-  "devDependencies": {
-    "gulp": "~3.8.10"
-  }
+    "name": "SocialTicTacToe",
+    "description": "Juego multijugar del clásico tres en raya.",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "express": "4.x",
+        "mongoose": "*",
+        "swig": "*",
+        "requirejs": "*",
+        "body-parser": "*",
+        "crypto": "*",
+        "xml": "*"
+    },
+    "devDependencies": {
+        "gulp": "~3.8.10",
+        "gulp-ruby-sass": "*",
+        "gulp-minify-css": "*"
+    }
 }

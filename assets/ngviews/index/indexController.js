@@ -1,7 +1,7 @@
 //_tess.components.controller("index", function($rootScope, $scope, $routeParams, $location, $window, $http) {
 _tess.controller("index", function($rootScope, $scope, $routeParams, $location, $window, $http) {
-	$scopeFBID = "661292413991564";
-
+	$scope.FBID = "661292413991564";
+        
 	(function(d, s, id){
           var js, fjs = d.getElementsByTagName(s)[0];
           if (d.getElementById(id)) {return;}
@@ -14,7 +14,7 @@ _tess.controller("index", function($rootScope, $scope, $routeParams, $location, 
           $rootScope.FB = FB;
 
           $rootScope.FB.init({
-               appId: $scopeFBID,
+               appId: $scope.FBID,
                xfbml: true,
                version: "v2.1"
           });

@@ -25,7 +25,7 @@ funcionesRutas: {
           ], function(cmsModule) {
                if(req && req.query && req.query.usuario && req.query.password) {
                     cmsModule.cms.islogin(req, function(response) {
-                         data.islogin = true;
+                         data.islogin = response;
                          res.render("cms/cms", data);
                     });
                }

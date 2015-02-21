@@ -74,16 +74,14 @@ _tess.directive("soltarArchivos", function() {
           link: function($scope, element, attrs) {
                var esValida;
                var procesarDD;
-               var TMPlistado = new Array();
                var extesionesValidas = attrs.soltarArchivos;
                
                procesarDD = function(e) {
                     e.preventDefault();
-                    // e.dataTransfer.effectAllowed = "copy";
-                    e.dataTransfer.effectAllowed = "copy";
+                    e.originalEvent.dataTransfer.effectAllowed = "copy";
 
                     return false;
-               }
+               };
 
                esValida = function(extesiones) {
                     if(extesionesValidas.indexOf(extesiones) > -1) {
@@ -101,9 +99,9 @@ _tess.directive("soltarArchivos", function() {
                return element.bind("drop", function(e) {
                     // console.log("DROP", e.dataTransfer.files[0]);
                     var archivo;
-                    var nombre
+                    var nombre;
                     var lector;
-                    var tamano
+                    var tamano;
                     var tipo;
                     var info;
                     
@@ -125,7 +123,7 @@ _tess.directive("soltarArchivos", function() {
                          }
                     };
 
-                    archivo = e.dataTransfer.files[0];
+                    archivo = e.originalEvent.dataTransfer.files[0];
                     nombre = archivo.name;
                     tipo = archivo.type;
                     tamano = archivo.size;

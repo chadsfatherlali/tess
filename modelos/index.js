@@ -31,6 +31,10 @@ schemas: {
         precio: "String",
         archivo: "String"
     });
+    
+    var TextSearchSchema = mongoose.Schema({
+        test: "String"
+    });
 }
 
 AltaProductoSchema.plugin(autoIncrement.plugin, "AltaProducto");
@@ -41,7 +45,8 @@ exports.modelo = function(modelo) {
         TipoProducto: mongoose.model("TipoProducto", TipoProductoSchema),
         NuevoColor: mongoose.model("NuevoColor", NuevoColorSchema),
         NuevaTalla: mongoose.model("NuevaTalla", NuevaTallaSchema),
-        AltaProducto: mongoose.model("AltaProducto", AltaProductoSchema)
+        AltaProducto: mongoose.model("AltaProducto", AltaProductoSchema),
+        TextSearch: mongoose.model("TextSearch", TextSearchSchema)
     };
 
     return modelos[modelo];

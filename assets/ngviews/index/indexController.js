@@ -3,63 +3,64 @@ _tess.controller("index", function($rootScope, $scope, $routeParams, $location, 
 	$scope.FBID = "661292413991564";
         
 	(function(d, s, id){
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) {return;}
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/es_ES/sdk.js";
-          fjs.parentNode.insertBefore(js, fjs);
-     }(document, "script", "facebook-jssdk"));
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/es_ES/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, "script", "facebook-jssdk"));
 
 	$window.fbAsyncInit = function() {
-          $rootScope.FB = FB;
+            $rootScope.FB = FB;
 
-          $rootScope.FB.init({
-               appId: $scope.FBID,
-               xfbml: true,
-               version: "v2.1"
-          });
+            $rootScope.FB.init({
+                appId: $scope.FBID,
+                xfbml: true,
+                version: "v2.1"
+            });
 
-          $rootScope.FB.getLoginStatus(function(response) {
-               if (response.status === "connected") {
+            $rootScope.FB.getLoginStatus(function(response) {
+                if (response.status === "connected") {
                     $scope.respuestaFB(response);
-               } 
-               
-               else if (response.status === "not_authorized") {
-                    $scope.logarFB();
-               } 
+                } 
 
-               else {
+                else if (response.status === "not_authorized") {
                     $scope.logarFB();
-               }
-          });
+                } 
 
-          $scope.logarFB = function() {
-               $rootScope.FB.login(function(response) {
+                else {
+                    $scope.logarFB();
+                }
+            });
+
+            $scope.logarFB = function() {
+                $rootScope.FB.login(function(response) {
                     if(response.authResponse) {
-                         $scope.respuestaFB(response);
+                        $scope.respuestaFB(response);
                     }
 
                     else {
-                         console.log("SE HA PRODUCIDO UN ERROR EM LA CONEXION FB");
+                        console.log("SE HA PRODUCIDO UN ERROR EM LA CONEXION FB");
                     }
-               }, {
+                }, 
+                
+                {
                     scope: "email,user_likes"
-               });
-          }
+                });
+            };
 
-          $scope.respuestaFB = function(response) {
-               $rootScope.FB.api("/me?fields=picture",
-               function(response) {
+            $scope.respuestaFB = function(response) {
+                $rootScope.FB.api("/me?fields=picture", function(response) {
                     console.log("FBUSER", response);
 
                     $scope.ifLike();
-               });
-          }
+                });
+            };
 
-          $scope.ifLike = function() {
-          	$rootScope.FB.api("/me/likes/590562517739494", function(response) {
-          		console.log("LIKES:", response);
-          	});
-          }
+            $scope.ifLike = function() {
+                $rootScope.FB.api("/me/likes/590562517739494", function(response) {
+                    console.log("LIKES:", response);
+                });
+            };
      };
 });

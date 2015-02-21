@@ -1,6 +1,6 @@
 {
-    "name": "SocialTicTacToe",
-    "description": "Juego multijugar del clásico tres en raya.",
+    "name": "Tess",
+    "description": "Aplicación Facebook de la marca TESS de INGESA",
     "version": "0.0.1",
     "private": true,
     "dependencies": {
@@ -10,7 +10,8 @@
         "requirejs": "*",
         "body-parser": "*",
         "crypto": "*",
-        "xml": "*"
+        "xml": "*",
+        "node-schedule": "*"
     },
     "devDependencies": {
         "gulp": "~3.8.10",

@@ -86,7 +86,7 @@ exports.especificaciones = function() {
 
         borrar: function(req, callback) {
             var REQ = req.query;
-
+            
             modelos.modelo(req.params.tipo).find({_id: REQ._id}).remove().exec(function(error, response) {
                 if(error) return console.error(error);
 

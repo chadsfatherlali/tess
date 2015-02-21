@@ -1,10 +1,12 @@
 requires: {
     var autoIncrement = require("mongoose-auto-increment");
+    var schedule = require("node-schedule");
     var bodyParser = require("body-parser");
     var mongoose = require("mongoose");
     var express = require("express");
     var rutas = require("./rutas");
     var https = require("https");
+    var cron = require("./cron");
     var http = require("http");
     var swig = require("swig");
     var xml = require("xml");
@@ -44,9 +46,16 @@ rutas: {
     app.get("/", rutas.index);
     app.post("/", rutas.index);
     app.get("/cms", rutas.cms);
+    app.post("/cms", rutas.cms);
     app.post("/especificaciones", rutas.especificaciones);
     app.get("/especificaciones/:accion/:tipo", rutas.especificaciones);
-    app.get("/productos/:accion", rutas.productos);
+    app.get("/productos/:accion?", rutas.productos);
+}
+
+IniciarCronJobs: {
+    var cronjob = schedule.scheduleJob("00 00 * * *", function() {
+        cron.job.init();
+    });
 }
 
 IniciacionDelServidor: {

@@ -10,7 +10,7 @@ _tess.controller("cms", function($rootScope, $scope, $routeParams, $location, $w
     });
 
     $http.get("/especificaciones/obtener/TipoProducto").success(function(response) {
-        $scope.tiposproductos = response;
+        $scope.tipoproductos = response;
     });
 
     $http.get("/especificaciones/obtener/NuevoColor").success(function(response) {
@@ -21,7 +21,7 @@ _tess.controller("cms", function($rootScope, $scope, $routeParams, $location, $w
         $scope.nuevatallas = response;
     });
 
-    $scope.borrarEspicificacion = function(modelo, obj, $event) {
+    $scope.borrarEspecificacion = function(modelo, obj, $event) {
         var array = modelo.toLowerCase() + "s";
         
         $http({

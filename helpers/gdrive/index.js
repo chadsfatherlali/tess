@@ -52,9 +52,6 @@ exports.manager = function() {
                     }
 
                     tp.getToken(function(err, access_token) {
-                        console.log("-->", access_token);
-                        console.log("-->", json.gdrive.FOLDER_ID);
-                        
                         var seconds = new Date().getTime();
                         var name = REQ.tipoproducto.replace(/\s/g, "-") + "-" + REQ.subtitulo.replace(/\s/g, "-") + "-" + seconds;
                         var base64Data = REQ.archivo.replace(/data:image\/jpeg;base64,/, "");
@@ -77,20 +74,13 @@ exports.manager = function() {
                                 fs.read(fileDescripter, buffer, 0, fstatus.size, 0, function(error, num) {
                                     request.post({
                                         "url": "https://www.googleapis.com/upload/drive/v2/files",
-                                        "qs": {
-                                            "uploadType": "multipart"
-                                        },
-                                        "headers": {
-                                            "Authorization": "Bearer " + access_token
-                                        },
-                                        "multipart":  [
-                                            {
+                                        "qs": {"uploadType": "multipart"},
+                                        "headers": {"Authorization": "Bearer " + access_token},
+                                        "multipart":  [{
                                                 "Content-Type": "application/json; charset=UTF-8",
                                                 "body": JSON.stringify({
                                                     "title":  name + ".jpg",
-                                                    "parents": [
-                                                        {"id": folder}
-                                                    ]
+                                                    "parents": [{"id": folder}]
                                                 })
                                             },
                                             {

@@ -1,8 +1,6 @@
 {% extends "../../assets/templates/basico.html" %}
 
-{% block title %}
-CMS | Tess
-{% endblock %}
+{% block title %}CMS | Tess{% endblock %}
 
 {% block content %}
 <div>
@@ -180,7 +178,7 @@ CMS | Tess
                                         </div>
                                            
                                         <div class="col-xs-12">
-                                            <input ng-click="submitform(altaproducto)" type="button" class="btn btn-sm btn-success" value="Dar de alta producto" />
+                                            <input ng-click="submitform(altaproducto, true)" type="button" class="btn btn-sm btn-success" value="Dar de alta producto" />
                                             <input ng-click="limipiarForm(altaproducto)" type="button" class="btn btn-sm btn-danger" value="Limpiar Formulario" />
                                         </div>
                                     </div>
@@ -294,7 +292,7 @@ CMS | Tess
                                         <th>[[producto.referencia]]</th>
                                         <th>[[producto.categoria]]</th>
                                         <th>[[producto.tipoproducto]] - [[producto.subtitulo]]</th>
-                                        <th><img style="width:10%;" class="img-responsive" ng-src="[[producto.archivo]]"></th>
+                                        <th><img style="width:10%;" class="img-responsive" src="[[producto.archivo]]"></th>
                                         <th>
                                             <label class="btn btn-warning" ng-click="editarProductos(producto)">Editar</label>
                                             <label class="btn btn-danger" ng-click="borrarProductos(producto, $event)">Borrar</label>

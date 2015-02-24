@@ -21,6 +21,7 @@ schemas: {
     });
 
     var AltaProductoSchema = mongoose.Schema({
+        _id: "Number",
         tipo: "String",
         categoria: "String",
         tipoproducto: "String",
@@ -29,11 +30,13 @@ schemas: {
         subtitulo: "String",
         referencia: "String",
         precio: "String",
-        archivo: "String"
+        archivo: "String",
+        idimg: "String"
     });
     
-    var TextSearchSchema = mongoose.Schema({
-        test: "String"
+    var BusquedaTextoSchema = mongoose.Schema({
+        _id: "Number",
+        value: "String"
     });
 }
 
@@ -46,7 +49,7 @@ exports.modelo = function(modelo) {
         NuevoColor: mongoose.model("NuevoColor", NuevoColorSchema),
         NuevaTalla: mongoose.model("NuevaTalla", NuevaTallaSchema),
         AltaProducto: mongoose.model("AltaProducto", AltaProductoSchema),
-        TextSearch: mongoose.model("TextSearch", TextSearchSchema)
+        BusquedaTexto: mongoose.model("BusquedaTexto", BusquedaTextoSchema)
     };
 
     return modelos[modelo];

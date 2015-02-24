@@ -5,17 +5,25 @@
     "private": true,
     "dependencies": {
         "express": "4.x",
-        "mongoose": "*",
+        "mongoose": "~3.8.12",
         "swig": "*",
         "requirejs": "*",
         "body-parser": "*",
         "crypto": "*",
         "xml": "*",
-        "node-schedule": "*"
+        "node-schedule": "*",
+        "mongoose-memcached": "*",
+        "googleapis": "*",
+        "refresh-token": "*",
+        "request": "*",
+        "mongoose-auto-increment": "*",
+        "q": "*"
     },
+    
     "devDependencies": {
         "gulp": "~3.8.10",
-        "gulp-ruby-sass": "*",
-        "gulp-minify-css": "*"
+        "gulp-sass": "*",
+        "gulp-minify-css": "*",
+        "gulp-nodemon": "*"
     }
 }

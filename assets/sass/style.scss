@@ -18,6 +18,9 @@ html, body, * {
     font-family: "Arial";
 }
 
+/**********************************************
+* CSS CMS
+**********************************************/
 #boxcms {
     margin: auto;
     width: 90%;
@@ -27,3 +30,26 @@ html, body, * {
     margin-top: 10%;
 }
 
+/**********************************************
+* CSS INDEX
+**********************************************/
+.row{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.dropdown{
+    margin: 0px 8px;
+    margin-top: 8px;
+}
+
+.producto{
+    .thumbnail{
+        img{
+            height: 290px !important;
+        }
+        p{
+            margin-top: 1em;
+        }
+    }
+}

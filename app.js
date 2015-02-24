@@ -1,5 +1,6 @@
 requires: {
     var autoIncrement = require("mongoose-auto-increment");
+    var mongooseMemcached = require("mongoose-memcached");
     var schedule = require("node-schedule");
     var bodyParser = require("body-parser");
     var mongoose = require("mongoose");
@@ -15,6 +16,17 @@ requires: {
 
 db: {
     autoIncrement.initialize(mongoose.connect("mongodb://localhost/tess"));
+}
+
+memcached: {
+    /*var options = {
+        cache: true,
+        ttl: 60,
+        memServers: "localhost:11211",
+        memOptions: null 
+    };
+    
+    mongooseMemcached(mongoose, options);*/
 }
 
 instaciasDeLosModulos: {
@@ -49,7 +61,9 @@ rutas: {
     app.post("/cms", rutas.cms);
     app.post("/especificaciones", rutas.especificaciones);
     app.get("/especificaciones/:accion/:tipo", rutas.especificaciones);
-    app.get("/productos/:accion?", rutas.productos);
+    app.post("/productos", rutas.productos);
+    app.get("/productos/:accion/:tipo?", rutas.productos);
+    app.get("/busquedatexto/:busqueda", rutas.busquedatexto);
 }
 
 IniciarCronJobs: {

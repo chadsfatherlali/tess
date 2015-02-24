@@ -1,27 +1,33 @@
 var gulp = require("gulp");
-var server = require("gulp-express");
-var sass = require("gulp-ruby-sass");
+var sass = require("gulp-sass");
 var minifycss = require("gulp-minify-css");
+var nodemon = require("gulp-nodemon");
 
-gulp.task("default", ["server", "watch"], function(){});
+gulp.task("default", ["server", "sass"], function(){});
 
 gulp.task("server", function() {
-    server.run({
-        file: "app.js"
-    });
+    nodemon({
+            script: "app.js",
+            ext: "html js"
+        })
+        .on("restart", function () {
+            console.log("Reinicia!!!");
+        });
+    
+    //server.run(["app.js"]);
 
-    gulp.watch(["app.js"], [server.run]);
-    gulp.watch(["rutas/**/*.js"], [server.run]);
+    //gulp.watch(["app.js"], [server.run]);
+    //gulp.watch(["rutas/**/*.js"], [server.run]);
     //gulp.watch(["views/**/*.*"], [server.run]);
 });
 
-gulp.task("css", function() {
-    return gulp.src("assets/sass/*.scss")
-        .pipe(sass({style: "expanded"}))
-        .pipe(minifycss())
-        .pipe(gulp.dest("assets/css"));
+gulp.task("sass", function() {
+    gulp.watch("assets/sass/*.scss", ["css"]);
 });
 
-gulp.task("watch", function() {
-    gulp.watch("assets/sass/*.scss", ["css"]);
+gulp.task("css", function() {
+    gulp.src("assets/sass/*.scss")
+        .pipe(sass({style: "compressed"}))
+        .pipe(minifycss())
+        .pipe(gulp.dest("assets/css"));
 });

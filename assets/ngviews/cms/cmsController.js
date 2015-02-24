@@ -46,19 +46,21 @@ _tess.controller("cms", function($rootScope, $scope, $routeParams, $location, $w
         });
     };
 
-    $scope.submitform = function(obj) {
-        $http.post("/especificaciones", obj)
-        .success(function(response) {
-            if(response.success) {
-                alert(response.reason);
+    $scope.submitform = function(obj, alta) {
+        var url = (alta)? "/productos" : "/especificaciones";
+        
+        $http.post(url, obj)
+            .success(function(response) {
+                if(response.success) {
+                    alert(response.reason);
 
-                window.location.reload();
-            }
+                    window.location.reload();
+                }
 
-            else {
-                alert(response.reason);
-            }
-        });
+                else {
+                    alert(response.reason);
+                }
+            });
     };
 
     $scope.limipiarForm = function(obj) {

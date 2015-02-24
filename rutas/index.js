@@ -1,9 +1,9 @@
 requires: {
-     var requirejs = require("requirejs");
-     var path_module = require("path");
-     var data = {
-          islogin: false
-     };
+    var requirejs = require("requirejs");
+    var path_module = require("path");
+    var data = {
+        islogin: false
+    };
 }
 
 funcionesRutas: {
@@ -13,7 +13,11 @@ funcionesRutas: {
         requirejs([
             __dirname + "/../views/index/indexModule"
         ], function(indexModule) {
-            indexModule.index.slides(function() {
+            indexModule.index.init(function(response) {
+                data.productos = response[0];
+                data.tipos = response[1];
+                data.categorias = response[2];
+                
                 res.render("index/index", data); 
             });
         });
@@ -28,6 +32,7 @@ funcionesRutas: {
             if(req && req.body && req.body.usuario && req.body.password) {
                 cmsModule.cms.islogin(req.body, function(response) {
                     data.islogin = response;
+                    
                     res.render("cms/cms", data);
                 });
            }
@@ -60,8 +65,32 @@ funcionesRutas: {
         requirejs([
             __dirname + "/../views/productos/productosModule"
         ], function(productosModule) {
-            productosModule.productos[req.params.accion](req, function(response) {
-                res.json(response);
+            if(req.params.accion) {
+                productosModule.productos[req.params.accion](req, function(response) {
+                    res.json(response);
+                });
+            }
+            
+            else {
+                productosModule.productos.alta(req, function(response) {
+                    res.json(response);
+                });
+            }
+        });
+    };
+    
+    exports.busquedatexto = function(req, res) {
+        requirejs([
+            __dirname + "/../views/productos/productosModule"
+        ], function(productosModule) {
+            productosModule.productos.busquedatexto(req, function(response) {
+                var result = {
+                    sucess: 1
+                };
+                
+                result.array = response;
+                
+                res.json(result);
             });                    
         });
     };

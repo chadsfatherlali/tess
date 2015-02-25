@@ -10,7 +10,7 @@
         <div ng-controller="cms">
             <section id="altas" class="col-xs-12">
                 <accordion close-others="oneAtATime">
-                    <accordion-group is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                    <accordion-group>
                         <accordion-heading>ALTAS EPECIFICACIONES:</accordion-heading>
 
                         <div class="col-xs-6">
@@ -96,8 +96,8 @@
                         </div>
                     </accordion-group>
 
-                    <accordion-group>
-                            <accordion-heading>ALTAS PRODUCTOS:</accordion-heading>
+                    <accordion-group is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                        <accordion-heading>ALTAS PRODUCTOS:</accordion-heading>
 
                         <form id="altaproductoform" name="altaproductoform">
                             <input ng-init="altaproducto.tipo = 'AltaProducto'" type="hidden" />

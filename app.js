@@ -46,6 +46,10 @@ sistemaDePlantillas: {
     app.set("views", __dirname + "/views");
     app.set("view cache", false);
     swig.setDefaults({cache: false});
+    
+    swig.setFilter("details", function (input) {
+        return input.split(",").join(", ");
+    });
 }
 
 configuracionesExpress: {
@@ -67,6 +71,10 @@ rutas: {
 }
 
 IniciarCronJobs: {
+    if(process.argv[2] === "cron") {
+        cron.job.init();
+    }
+    
     var cronjob = schedule.scheduleJob("00 00 * * *", function() {
         cron.job.init();
     });

@@ -100,6 +100,7 @@ _tess.controller("cms", function($rootScope, $scope, $routeParams, $location, $w
             angular.forEach(vector, function(value, key) {
                 if(value.color === value1 && value.nombre === value2) {
                     existe = true;
+                    
                     index = key;
                 }
             });

@@ -1,8 +1,23 @@
 //_tess.components.controller("index", function($rootScope, $scope, $routeParams, $location, $window, $http) {
-_tess.controller("index", function($rootScope, $scope, $routeParams, $location, $window, $http) {
+_tess.controller("index", function($rootScope, $scope, $routeParams, $location, $window, $http, ngProgress) {
     $scope.busquedatextoresponse = [];
     $scope.FBID = "661292413991564";
     $scope.busqueda = "";
+    $scope.carrito = [];
+    $scope.mostrar = [];
+    
+    var coloresngprogress = ["#eb9316", "#265a88", "#5cb85c", "#ec971f", "#31b0d5"];
+    
+    ngProgress.height("4px");
+    
+    $scope.$on("starthttprequest", function() {
+        ngProgress.color(coloresngprogress[Math.floor((Math.random() * coloresngprogress.length) + 0)]);
+        ngProgress.start();
+    });
+    $scope.$on("completehttprequest", function() {
+        ngProgress.complete();
+    });
+
 
     (function(d, s, id){
         var js, fjs = d.getElementsByTagName(s)[0];

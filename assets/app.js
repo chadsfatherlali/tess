@@ -3,19 +3,22 @@
 var _tess = angular.module("App", [
      "ngRoute",
      "ui.bootstrap",
-     "_directives_"
+     "_directives_",
+     "ngProgress"
 ]);
 
 _tess.config([
      "$interpolateProvider",
      "$routeProvider", 
      "$controllerProvider", 
+     "$httpProvider",
 
-     function($interpolateProvider, $routeProvider, $controllerProvider) {
+     function($interpolateProvider, $routeProvider, $controllerProvider, $httpProvider) {
           _tess.components = {
-               controller: $controllerProvider.register,
-          }
-
+               controller: $controllerProvider.register
+          };
+          
+          $httpProvider.interceptors.push("httpInterceptor");
           $interpolateProvider.startSymbol("[[").endSymbol("]]");
 
           // $routeProvider
@@ -64,6 +67,51 @@ _tess.controller("mainController", function($rootScope, $scope, $routeParams, $l
      // $scope.indexView = function() {
      //      $location.path("/index");
      // }
+});
+
+_tess.factory("httpInterceptor", function($rootScope) {
+    //ngProgress.color("#5cb85c");
+    
+    return {
+        // optional method
+        'request': function(config) {
+            // do something on success
+            //ngProgress.start();
+            $rootScope.$broadcast("starthttprequest");
+            return config;
+        },
+        
+        // optional method
+       'requestError': function(rejection) {
+            // do something on error
+            if (canRecover(rejection)) {
+              return responseOrNewPromise;
+            }
+
+            return $q.reject(rejection);
+        },
+
+
+
+        // optional method
+        'response': function(response) {
+            // do something on success
+            //ngProgress.complete();
+            
+            $rootScope.$broadcast("completehttprequest");
+            return response;
+        },
+
+        // optional method
+       'responseError': function(rejection) {
+            // do something on error
+            if (canRecover(rejection)) {
+                return responseOrNewPromise;
+            }
+            
+           return $q.reject(rejection);
+        }
+    };
 });
 
 _tess.directive("soltarArchivos", function() {

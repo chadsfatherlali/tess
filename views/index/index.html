@@ -12,21 +12,65 @@
                 <div class="item"><img src="/assets/imgs/shaper.jpg" alt="GTA V"></div>
             </owl> -->
             
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#">
-                            <img height="20" alt="Brand" src="/assets/imgs/logo-tess.png">
-                        </a>
-                    </div>
-                    
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown">
-                                <div class="btn-group" dropdown is-open="status.isopen">
-                                    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">Categoría <span class="caret"></span></button>
+            <div class="row">
+                <div class="col-sm-8 no-padding">
+                    {% for producto in productos %}
+                    <div ng-class="(busquedatextoresponse.length > 0 && busquedatextoresponse.indexOf({{producto._id}}) == -1 && busqueda.length > 1)? 'hide' : 'show'" id="prod_id-{{producto._id}}}" class="producto">
+                        <div class="thumbnail">
+                            <img src="{{producto.archivo}}" alt="{{producto.tipoproducto}}">
 
+                            <div class="caption">
+                                <h3>{{producto.tipoproducto|upper}}</h3>
+                                <h5>{{producto.subtitulo|upper}}</h5>
+
+                                {% for talla in producto.stockaje %}
+                                <span class="label label-success">{{loop.key|upper}}</span>
+                                {% endfor %}
+
+                                <p>
+                                    <a ng-click="mostrar[{{loop.key}}] = true" class="btn btn-primary" role="button">Ver detalles</a>
+                                    <a href="https://www.cdxperience.com/cms" class="btn btn-warning" role="button" title="Ver carrito"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="badge">{{producto.precio}} $</span></a>
+                                </p>
+                            </div>
+                            
+                            <div class="detalle hide" ng-class="(mostrar[{{loop.key}}])? 'show' : 'hide'">
+                                {% for talla in producto.stockaje %}
+                                <ul>
+                                    <li class="clear"><span class="label label-primary">Talla {{loop.key|upper}}, colores disponibles:</span></li>
+                                    <li>
+                                        <ul>
+                                            {% for color in talla.colores %}
+                                            <li><span style="color: {{color.color}}" class="glyphicon glyphicon-info-sign" title="{{color.nombre|upper}}"></span></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                </ul>
+                                {% endfor %}
+                                <footer>
+                                    <div class="clear alert alert-success" role="alert">{{producto.caracteristicas|default("No tiene características adicionales")|details|capitalize}}</div>
+                                    <button ng-click="mostrar[{{loop.key}}] = false" type="button" class="btn btn-danger">Cerrar</button>
+                                <footer>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="col-sm-4 no-padding">
+                    <nav id="side-content" class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <header>
+                                <a id="logo" href=""><img src="assets/imgs/logo-tess.png" alt="tess by ingesa" title="tess by ingesa"/></a>
+                                <div id="carrito-qt"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="badge">[[carrito.length]]</span></div>
+                            </header>
+                            <div class="nav-content">
+                                <div class="btn-group" dropdown>
+                                    <button type="button" class="btn btn-primary">CATEGORÍA</button>
+                                    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Split button!</span>
+                                    </button>
+                                    
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a ng-click="busqueda = ''">Todas</a></li>
                                         <li class="divider"></li>
@@ -35,53 +79,28 @@
                                         {% endfor %}
                                     </ul>
                                 </div>
-                            </li>
-                            
-                            <li class="dropdown">
-                                <div class="btn-group" dropdown>
-                                    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">Tipo <span class="caret"></span></button>
-
+                                
+                                 <div class="btn-group" dropdown>
+                                    <button type="button" class="btn btn-primary">TIPO</button>
+                                    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Split button!</span>
+                                    </button>
+                                    
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a ng-click="busqueda = ''">Todos</a></li>
+                                        <li><a ng-click="busqueda = ''">Todas</a></li>
                                         <li class="divider"></li>
                                         {% for tipo in tipos %}
                                         <li><a ng-click="busqueda = '{{tipo.producto}}'">{{tipo.producto|capitalize}}</a></li>
                                         {% endfor %}
                                     </ul>
                                 </div>
-                            </li>
-                        </ul>
-                        
-                        <form class="navbar-form navbar-left" role="search">
-                            <div class="form-group">
-                                <input ng-model="busqueda" type="text" class="form-control" placeholder="Filtrar productos">
+                                
+                                <input id="busqueda" ng-model="busqueda" type="text" class="form-control" placeholder="Filtrar productos">
                             </div>
-                        </form>
-                    </div>
-                </div>
-            </nav>
-            
-            <div class="row">
-                {% for producto in productos %}
-                <div ng-class="(busquedatextoresponse.length > 0 && busquedatextoresponse.indexOf({{producto._id}}) == -1 && busqueda.length > 1)? 'hide' : 'show'" id="prod_id-{{producto._id}}}" class="producto col-sm-4 col-md-4">
-                    <div class="thumbnail">
-                        <img src="{{producto.archivo}}" alt="{{producto.tipoproducto}}">
-                        
-                        <div class="caption">
-                            <h3>{{producto.tipoproducto|upper}}</h3>
-                            <h5>{{producto.subtitulo|upper}}</h5>
-                            
-                            {% for color in producto.stockaje %}
-                            <span class="label label-success">{{loop.key|upper}}</span>
-                            {% endfor %}
-                            
-                            <p>
-                                <a href="https://www.cdxperience.com/cms" class="btn btn-primary" role="button">Ver producto <span class="badge">{{producto.precio}} $</span></a>
-                            </p>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-                {% endfor %}
             </div>
             
         </div>

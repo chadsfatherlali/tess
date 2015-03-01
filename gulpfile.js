@@ -15,7 +15,6 @@ gulp.task("server", function() {
         });
     
     //server.run(["app.js"]);
-
     //gulp.watch(["app.js"], [server.run]);
     //gulp.watch(["rutas/**/*.js"], [server.run]);
     //gulp.watch(["views/**/*.*"], [server.run]);

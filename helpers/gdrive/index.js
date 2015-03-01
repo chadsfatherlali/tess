@@ -42,7 +42,7 @@ exports.manager = function() {
         
         upload: function(REQ, testimg, callback) {
             if(testimg) {
-                callback(REQ.archivo, REQ.imgid);
+                callback(REQ.archivo, REQ.idimg);
             } 
             
             else{

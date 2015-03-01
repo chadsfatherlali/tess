@@ -14,6 +14,8 @@
             
             <div class="row">
                 <div class="col-sm-8 no-padding">
+                    <div ng-view></div>
+                    
                     {% for producto in productos %}
                     <div ng-class="(busquedatextoresponse.length > 0 && busquedatextoresponse.indexOf({{producto._id}}) == -1 && busqueda.length > 1)? 'hide' : 'show'" id="prod_id-{{producto._id}}}" class="producto">
                         <div class="thumbnail">
@@ -29,7 +31,7 @@
 
                                 <p>
                                     <a ng-click="mostrar[{{loop.key}}] = true" class="btn btn-primary" role="button">Ver detalles</a>
-                                    <a href="https://www.cdxperience.com/cms" class="btn btn-warning" role="button" title="Ver carrito"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="badge">{{producto.precio}} $</span></a>
+                                    <a href="#/producto/{{producto._id}}" class="btn btn-warning" role="button"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="badge">{{producto.precio}} $</span></a>
                                 </p>
                             </div>
                             
@@ -110,4 +112,5 @@
 
 {% block js %}
 <script src="/assets/ngviews/index/indexController.js"></script>
+<script src="/assets/ngviews/producto/productoController.js"></script>
 {% endblock %}

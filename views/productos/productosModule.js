@@ -9,12 +9,12 @@ exports.productos = function() {
         obtener: function(req, callback) {
             var REQ = req.query;
             var offset = REQ.offset;
-            var obj = {
+            /*var obj = {
                 categoria: REQ.categoria || {$type: 2},
                 tipoproducto: REQ.tipoproducto || {$type: 2}
-            };
-
-            modelos.modelo("AltaProducto").find(obj).limit(offset).exec(function(error, response) {
+            };*/
+            
+            modelos.modelo("AltaProducto").find(REQ).limit(offset).exec(function(error, response) {
                 if(error) return console.error(error);
 
                 if(callback) callback(response);				

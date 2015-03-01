@@ -125,11 +125,7 @@ _tess.controller("cms", function($rootScope, $scope, $routeParams, $location, $w
     };
 
     $scope.obtenerProductos = function(offset, categoria, tipoproducto) {
-        var obj = {
-            offset: offset || 0,
-            categoria: categoria || null,
-            tipoproducto: tipoproducto || null
-        };
+        var obj = {};
 
         $http({
             method: "GET",

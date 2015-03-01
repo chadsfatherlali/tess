@@ -1,0 +1,43 @@
+<div>
+    <div ng-if="productoAcomprar._id" id="productoAcomprar" class="col-sm-8">
+        <header>
+            <h3>[[productoAcomprar.categoria|uppercase]]</h3>
+            <h5>[[productoAcomprar.tipoproducto|uppercase]]</h5>
+        </header>
+        
+        <article>
+            <div class="row">
+                <div class="col-xs-6">
+                    <img ng-src="[[productoAcomprar.archivo]]" />
+                </div>
+                <div class="col-xs-6">
+                    <form>
+                        <select class="form-control" ng-model="addProducto.talla" ng-options="key as (key|uppercase) for (key , value) in productoAcomprar.stockaje" placeholder="Seleccione una talla">
+                            <option value="">Seleccione una talla</option>
+                        </select>
+                        
+                        <div id="colores-por-talla" class="btn-group" dropdown ng-if="productoAcomprar.stockaje[addProducto.talla]">
+                            <button type="button" class="btn btn-default">[[(addProducto.color.nombre|uppercase) || "Escoje un color"]]</button>
+                            <button type="button" class="btn dropdown-toggle" dropdown-toggle>
+                                <span class="caret"></span>
+                                <span class="sr-only">Split button!</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li ng-repeat="(key, value) in productoAcomprar.stockaje[addProducto.talla].colores"><a ng-click="addProducto.color = {nombre: value.nombre, color:value.color}">[[value.nombre|uppercase]] <span style="color:[[value.color]]" class="glyphicon glyphicon-asterisk"></span></a></li>
+                            </ul>
+                        </div>
+                        
+                        <input class="stepper" ng-model="addProducto.cantidad" type="number" min="1" placeholder="Escoje una cantidad" stepper/>
+                        
+                        [[addProducto|json]]
+                    </form>
+                </div>
+            </div>
+        </article>
+    
+        <footer>
+            <button class="btn btn-success" role="button">Añadir al carrito <span class="glyphicon glyphicon-shopping-cart"></span> <span ng-if="addProducto.cantidad" class="badge">[[productoAcomprar.precio * addProducto.cantidad]] $</span></button>
+            <a href="#/index" type="button" class="btn btn-danger" role="button">Cerrar</a>
+        </footer>
+    </div>
+</div>

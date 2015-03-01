@@ -8,7 +8,7 @@ _tess.controller("index", function($rootScope, $scope, $routeParams, $location, 
     
     var coloresngprogress = ["#eb9316", "#265a88", "#5cb85c", "#ec971f", "#31b0d5"];
     
-    ngProgress.height("4px");
+    ngProgress.height("2px");
     
     $scope.$on("starthttprequest", function() {
         ngProgress.color(coloresngprogress[Math.floor((Math.random() * coloresngprogress.length) + 0)]);
@@ -99,4 +99,8 @@ _tess.controller("index", function($rootScope, $scope, $routeParams, $location, 
         
         $scope.status.isopen = !$scope.status.isopen;
     };
+    
+    /*$scope.Acomprar = function(obj) {
+        $scope.$broadcast("Acomprar", obj);
+    };*/
 });

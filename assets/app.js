@@ -8,44 +8,31 @@ var _tess = angular.module("App", [
 ]);
 
 _tess.config([
-     "$interpolateProvider",
-     "$routeProvider", 
-     "$controllerProvider", 
-     "$httpProvider",
+    "$interpolateProvider",
+    "$routeProvider", 
+    "$controllerProvider", 
+    "$httpProvider",
 
-     function($interpolateProvider, $routeProvider, $controllerProvider, $httpProvider) {
-          _tess.components = {
-               controller: $controllerProvider.register
-          };
-          
-          $httpProvider.interceptors.push("httpInterceptor");
-          $interpolateProvider.startSymbol("[[").endSymbol("]]");
+    function($interpolateProvider, $routeProvider, $controllerProvider, $httpProvider) {
+        _tess.components = {
+            controller: $controllerProvider.register
+        };
 
-          // $routeProvider
-          // .when("/:vista",
-          //      {
-          //           templateUrl: function($routeParams) {
-          //                return "/assets/ngviews/" + $routeParams.vista + "/" + $routeParams.vista + ".html";
-          //           },
-          //           resolve: {
-          //                load: ["$q", "$rootScope", "$route", function($q, $rootScope, $route) {
-          //                     var deferred = $q.defer();
-          //                     var nombreCtrl = $route.current.params.vista;
-                              
-          //                     require([
-          //                          "/assets/ngviews/" + nombreCtrl + "/" + nombreCtrl + "Controller.js"
-          //                     ], function() {
-          //                          $rootScope.$apply(function () {
-          //                               deferred.resolve();
-          //                          });
-          //                     });
+        $httpProvider.interceptors.push("httpInterceptor");
+        $interpolateProvider.startSymbol("[[").endSymbol("]]");
 
-          //                     return deferred.promise;
-          //                }]
-          //           }
-          //      }
-          // )
-     }
+        $routeProvider
+            .when("/index", {
+                templateUrl: "assets/ngviews/index/index.html"
+            })
+            .when("/producto/:_id",
+                {
+                    templateUrl: "/assets/ngviews/producto/producto.html",
+                    controller: "producto"
+                }
+            )
+            .otherwise({redirectTo: "/index"});
+   }
 ]);
 
 _tess.controller("mainController", function($rootScope, $scope, $routeParams, $location, $window, $http, $q, $route) {
@@ -110,6 +97,17 @@ _tess.factory("httpInterceptor", function($rootScope) {
             }
             
            return $q.reject(rejection);
+        }
+    };
+});
+
+_tess.directive("stepper", function() {
+    return {
+        transclude: true,
+        restrict: "A",
+        
+        link: function($scope, element, attrs) {
+            $(".stepper").stepper();
         }
     };
 });

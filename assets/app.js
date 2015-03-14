@@ -46,52 +46,33 @@ _tess.controller("mainController", function($rootScope, $scope, $routeParams, $l
      $scope.$on("$routeChangeSuccess", function(next, current) { 
           console.log("APP LOCATION STATUS: OK");
      });
-
-     // $scope.cmsView = function() {
-     //      $location.path("/cms");
-     // }
-
-     // $scope.indexView = function() {
-     //      $location.path("/index");
-     // }
 });
 
 _tess.factory("httpInterceptor", function($rootScope) {
     //ngProgress.color("#5cb85c");
     
     return {
-        // optional method
-        'request': function(config) {
-            // do something on success
-            //ngProgress.start();
+        "request": function(config) {
             $rootScope.$broadcast("starthttprequest");
             return config;
         },
-        
-        // optional method
-       'requestError': function(rejection) {
-            // do something on error
-            if (canRecover(rejection)) {
+
+       "requestError": function(rejection) {
+            if(canRecover(rejection)) {
               return responseOrNewPromise;
             }
 
             return $q.reject(rejection);
-        },
+       },
 
+        "response": function(response) {
 
-
-        // optional method
-        'response': function(response) {
-            // do something on success
-            //ngProgress.complete();
             
             $rootScope.$broadcast("completehttprequest");
             return response;
         },
 
-        // optional method
-       'responseError': function(rejection) {
-            // do something on error
+       "responseError": function(rejection) {
             if (canRecover(rejection)) {
                 return responseOrNewPromise;
             }
@@ -101,13 +82,34 @@ _tess.factory("httpInterceptor", function($rootScope) {
     };
 });
 
+_tess.factory("carritoCompras", function() {
+
+    return {
+        crear: function (id) {
+            var carritoKey = "carrito" + id;
+            var obj = {__id: id, compras: []};
+
+            if (!localStorage.getItem(carritoKey)) localStorage.setItem(carritoKey, JSON.stringify(obj));
+        },
+
+        update: function (id, compra) {
+            var carritoKey = "carrito" + id;
+            var obj = JSON.parse(localStorage.getItem(carritoKey)) || {};
+
+            obj.compras.push(compra);
+
+            localStorage.setItem(carritoKey, JSON.stringify(obj));
+        }
+    }
+});
+
 _tess.directive("stepper", function() {
     return {
         transclude: true,
         restrict: "A",
-        
+
         link: function($scope, element, attrs) {
-            $(".stepper").stepper();
+            $(element).stepper();
         }
     };
 });

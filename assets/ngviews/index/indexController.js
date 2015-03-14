@@ -1,11 +1,13 @@
 //_tess.components.controller("index", function($rootScope, $scope, $routeParams, $location, $window, $http) {
-_tess.controller("index", function($rootScope, $scope, $routeParams, $location, $window, $http, ngProgress) {
+_tess.controller("index", function($rootScope, $scope, $routeParams, $location, $window, $http, ngProgress, carritoCompras) {
     $scope.busquedatextoresponse = [];
     $scope.FBID = "661292413991564";
+    $scope.IDFBUsuario;
     $scope.busqueda = "";
     $scope.carrito = [];
     $scope.mostrar = [];
-    
+    $scope.addProducto = {};
+
     var coloresngprogress = ["#eb9316", "#265a88", "#5cb85c", "#ec971f", "#31b0d5"];
     
     ngProgress.height("2px");
@@ -14,6 +16,7 @@ _tess.controller("index", function($rootScope, $scope, $routeParams, $location, 
         ngProgress.color(coloresngprogress[Math.floor((Math.random() * coloresngprogress.length) + 0)]);
         ngProgress.start();
     });
+
     $scope.$on("completehttprequest", function() {
         ngProgress.complete();
     });
@@ -37,11 +40,11 @@ _tess.controller("index", function($rootScope, $scope, $routeParams, $location, 
         });
 
         $rootScope.FB.getLoginStatus(function(response) {
-            if (response.status === "connected") {
+            if(response.status === "connected") {
                 $scope.respuestaFB(response);
             } 
 
-            else if (response.status === "not_authorized") {
+            else if(response.status === "not_authorized") {
                 $scope.logarFB();
             } 
 
@@ -68,7 +71,9 @@ _tess.controller("index", function($rootScope, $scope, $routeParams, $location, 
 
         $scope.respuestaFB = function(response) {
             $rootScope.FB.api("/me?fields=picture", function(response) {
-                console.log("FBUSER", response);
+                $scope.IDFBUsuario = response.id;
+
+                carritoCompras.crear($scope.IDFBUsuario);
 
                 $scope.ifLike();
             });

@@ -1,7 +1,9 @@
-_tess.controller("producto", function($rootScope, $scope, $http, $routeParams) {
+_tess.controller("producto", function($rootScope, $scope, $http, $routeParams, carritoCompras) {
+    $scope.cantidadProducto = 3;
     $scope.productoAcomprar = {};
     $scope.coloresEscojer = [];
-    
+    $scope.temp = {};
+
     $http({
         method: "GET",
         url: "/productos/obtener", 
@@ -9,7 +11,16 @@ _tess.controller("producto", function($rootScope, $scope, $http, $routeParams) {
     })
     .success(function(response) {
         $scope.productoAcomprar = response[0];
-
-        console.log("-->", $scope.productoAcomprar);
     });
+
+    $scope.cantidadProductos = function(){
+        return new Array($scope.cantidadProducto);
+    };
+
+    $scope.anadirProductoCarrito = function(addProducto, referencia) {
+        $scope.addProducto = {};
+        $scope.addProducto[referencia] = addProducto;
+
+        carritoCompras.update($scope.IDFBUsuario, $scope.addProducto);
+    }
 });

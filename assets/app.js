@@ -48,6 +48,22 @@ _tess.controller("mainController", function($rootScope, $scope, $routeParams, $l
      });
 });
 
+_tess.filter("generateid", function() {
+   return function(string) {
+       return string + "-"  + Math.floor(Math.random() * 9999) + 1000;
+   }
+});
+
+_tess.directive("compra", function($http) {
+    return {
+        restrict: "A",
+        transclude: true,
+        templateUrl: "assets/ngviews/producto/compra.html",
+
+        link: function(scope, element, attr) {}
+    }
+});
+
 _tess.factory("httpInterceptor", function($rootScope) {
     //ngProgress.color("#5cb85c");
     

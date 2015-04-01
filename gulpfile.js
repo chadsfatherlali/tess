@@ -26,6 +26,7 @@ gulp.task("sass", function() {
 
 gulp.task("css", function() {
     gulp.src("assets/sass/*.scss")
+        .pipe(sass({errLogToConsole: true}))
         .pipe(sass({style: "compressed"}))
         .pipe(minifycss())
         .pipe(gulp.dest("assets/css"));

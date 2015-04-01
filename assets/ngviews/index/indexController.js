@@ -8,6 +8,8 @@ _tess.controller("index", function($rootScope, $scope, $routeParams, $location, 
     $scope.mostrar = [];
     $scope.addProducto = {};
 
+    $rootScope.carritoCompra = [];
+
     var coloresngprogress = ["#eb9316", "#265a88", "#5cb85c", "#ec971f", "#31b0d5"];
     
     ngProgress.height("2px");

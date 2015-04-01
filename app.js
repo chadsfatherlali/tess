@@ -68,6 +68,9 @@ rutas: {
     app.post("/productos", rutas.productos);
     app.get("/productos/:accion/:tipo?", rutas.productos);
     app.get("/busquedatexto/:busqueda", rutas.busquedatexto);
+    app.get("*", function(req, res) {
+        res.send("Página no encontrada");
+    });
 }
 
 IniciarCronJobs: {

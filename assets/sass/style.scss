@@ -55,6 +55,10 @@ html, body, * {
     margin-top: 8px;
 }
 
+.capitalize{
+  text-transform: capitalize;
+}
+
 .producto{
     width: 45%;
     float: left;
@@ -179,6 +183,9 @@ html, body, * {
             }
         }
     }
+    .caracteristicas{
+        margin-top: 1.2em;
+    }
 }
 
 /**********************************************
@@ -191,7 +198,7 @@ html, body, * {
     z-index: 99998;
     background-color: green;
     color: green;
-    box-shadow: 0 0 10px 0; /* Inherits the font color */
+    box-shadow: 0 0 10px 0;
     height: 2px;
     opacity: 0;
 

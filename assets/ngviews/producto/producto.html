@@ -7,38 +7,30 @@
         
         <article>
             <div class="row">
-                <div class="col-xs-6">
+                <div class="col-xs-6" ng-init="listado(productoAcomprar.caracteristicas)">
                     <img ng-src="[[productoAcomprar.archivo]]" />
+                    <div class="caracteristicas clear alert alert-success" rolert="alert">
+                        <ul>
+                            <li class="capitalize" ng-repeat="item in listado">[[item]]</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-xs-6">
+
                     <form>
-                        <div ng-repeat="i in cantidadProductos(cantidadProducto) track by $index">
-                            <select class="form-control" ng-model="temp[$index].talla" ng-options="key as (key|uppercase) for (key , value) in productoAcomprar.stockaje" placeholder="Seleccione una talla">
-                                <option value="">Seleccione una talla</option>
-                            </select>
-
-                            <div id="colores-por-talla" class="btn-group" dropdown ng-if="productoAcomprar.stockaje[temp[$index].talla]">
-                                <button type="button" class="btn btn-default">[[(temp[$index].color.nombre|uppercase) || "Escoje un color"]]</button>
-                                <button type="button" class="btn dropdown-toggle" dropdown-toggle>
-                                    <span class="caret"></span>
-                                    <span class="sr-only">Split button!</span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li ng-repeat="(key, value) in productoAcomprar.stockaje[temp[$parent.$index].talla].colores"><a ng-click="temp[$parent.$index].color = {nombre: value.nombre, color:value.color}">[[value.nombre|uppercase]] <span style="color:[[value.color]]" class="glyphicon glyphicon-asterisk"></span></a></li>
-                                </ul>
-                            </div>
-
-                            <input class="stepper" ng-model="temp[$index].cantidad" type="number" min="1" placeholder="Escoje una cantidad" stepper/>
+                        <div ng-repeat="i in cantidadProductos track by $index">
+                            <div compra></div>
                         </div>
+
+                        <div>
+                            <button class="btn btn-success btn-xs" role="button" data-id="[[rndKEY]]" ng-click="cantidadProducto('add', rndKEY, $event)"><span class="glyphicon glyphicon-plus-sign"></span></button>
+                        </div>
+
+                        <button class="btn btn-success btn-sm" role="button" ng-click="anadirProductoCarrito(temp, productoAcomprar.referencia)">Añadir al carrito <span class="glyphicon glyphicon-shopping-cart"></span> <span ng-if="temp.precioTotal" class="badge">[[temp.precioTotal]] $</span></button>
+                        <a href="#/index" type="button" class="btn btn-danger btn-sm" role="button"><span class="glyphicon glyphicon-home"></span></a>
                     </form>
                 </div>
             </div>
         </article>
-    
-        <footer>
-            <button class="btn btn-success" role="button" ng-click="anadirProductoCarrito(temp, productoAcomprar.referencia)">Añadir al carrito <span class="glyphicon glyphicon-shopping-cart"></span> <span ng-if="addProducto.cantidad" class="badge">[[productoAcomprar.precio * addProducto.cantidad]] $</span></button>
-            <a href="#/index" type="button" class="btn btn-danger" role="button">Cerrar</a>
-            [[temp|json]]
-        </footer>
     </div>
 </div>

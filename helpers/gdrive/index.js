@@ -76,7 +76,7 @@ exports.manager = function() {
                                         "url": "https://www.googleapis.com/upload/drive/v2/files",
                                         "qs": {"uploadType": "multipart"},
                                         "headers": {"Authorization": "Bearer " + access_token},
-                                        "multipart":  [{
+                                        "multipart": [{
                                                 "Content-Type": "application/json; charset=UTF-8",
                                                 "body": JSON.stringify({
                                                     "title":  name + ".jpg",

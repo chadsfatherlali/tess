@@ -2,12 +2,12 @@
 _tess.controller("index", function($rootScope, $scope, $routeParams, $location, $window, $http, ngProgress, carritoCompras) {
     $scope.busquedatextoresponse = [];
     $scope.FBID = "661292413991564";
-    $scope.IDFBUsuario;
     $scope.busqueda = "";
     $scope.carrito = [];
     $scope.mostrar = [];
     $scope.addProducto = {};
 
+    $rootScope.IDFBUsuario;
     $rootScope.carritoCompra = [];
 
     var coloresngprogress = ["#eb9316", "#265a88", "#5cb85c", "#ec971f", "#31b0d5"];
@@ -73,9 +73,9 @@ _tess.controller("index", function($rootScope, $scope, $routeParams, $location, 
 
         $scope.respuestaFB = function(response) {
             $rootScope.FB.api("/me?fields=picture", function(response) {
-                $scope.IDFBUsuario = response.id;
+                $rootScope.IDFBUsuario = response.id;
 
-                carritoCompras.crear($scope.IDFBUsuario);
+                carritoCompras.crear($rootScope.IDFBUsuario);
 
                 $scope.ifLike();
             });

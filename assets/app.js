@@ -100,21 +100,62 @@ _tess.factory("httpInterceptor", function($rootScope) {
 
 _tess.factory("carritoCompras", function() {
 
+    function setLocalStorage(key, obj) {
+        localStorage.setItem(key, JSON.stringify(obj));
+    }
+
+    function getLocalStorage(key) {
+        return JSON.parse(localStorage.getItem(key));
+    }
+
     return {
         crear: function (id) {
             var carritoKey = "carrito" + id;
-            var obj = {__id: id, compras: []};
+            var obj = {__id: id, compras: {}};
 
-            if (!localStorage.getItem(carritoKey)) localStorage.setItem(carritoKey, JSON.stringify(obj));
+            if (!getLocalStorage(carritoKey)) setLocalStorage(carritoKey, obj);
         },
 
-        update: function (id, compra) {
+        get: function(id) {
             var carritoKey = "carrito" + id;
-            var obj = JSON.parse(localStorage.getItem(carritoKey)) || {};
+            var obj = getLocalStorage(carritoKey) || {};
 
-            obj.compras.push(compra);
+            return obj;
+        },
 
-            localStorage.setItem(carritoKey, JSON.stringify(obj));
+        update: function (id, compra, referencia) {
+            var carritoKey = "carrito" + id;
+            var obj = getLocalStorage(carritoKey) || {};
+
+            if(!obj.compras) obj.compras = {};
+            if(!obj.compras[referencia]) obj.compras[referencia] = [];
+
+            obj.compras[referencia] = compra;
+
+            setLocalStorage(carritoKey, obj);
+        }
+    }
+});
+
+_tess.factory("objReorder", function() {
+    return {
+        do: function(obj) {
+            var orderObj = {};
+            var aux = 0;
+
+            _.mapObject(obj, function(v, k) {
+                if(k === "precioTotal") {
+                    orderObj.precioTotal = v;
+                }
+
+                else {
+                    orderObj[aux] = v;
+
+                    aux++;
+                }
+            });
+
+            return orderObj;
         }
     }
 });

@@ -1,12 +1,12 @@
-_tess.controller("producto", function($rootScope, $scope, $http, $routeParams, carritoCompras, $compile) {
+_tess.controller("producto", function($rootScope, $scope, $http, $routeParams, carritoCompras, $compile, objReorder) {
     var html = "<div id=\"[['compra' | generateid ]]\" compra></div>";
 
-    $scope.cantidadProductos = new Array(1);
     $scope.productoAcomprar = {};
     $scope.coloresEscojer = [];
     $scope.listado = [];
-    $scope.temp = {};
     $scope.obj = {};
+    $scope.temp = {};
+    $scope.cantidadProductos = new Array(1);
 
     angular.element(document.querySelector("#carritoCompra")).append($compile(html)($scope));
 
@@ -14,10 +14,20 @@ _tess.controller("producto", function($rootScope, $scope, $http, $routeParams, c
         method: "GET",
         url: "/productos/obtener", 
         params: {_id: $routeParams._id}
-    })
-    .success(function(response) {
-        $scope.productoAcomprar = response[0];
-    });
+    }).
+        success(function(response) {
+            $scope.productoAcomprar = response[0];
+
+            var obj =  carritoCompras.get($rootScope.IDFBUsuario);
+            var referencia = $scope.productoAcomprar['referencia'];
+            var compras = objReorder.do(obj.compras[referencia]);
+            var comprasLength = Object.keys(compras).length;
+
+            if (comprasLength > 0) {
+                $scope.cantidadProductos = new Array(comprasLength - 1);
+                $scope.temp = compras;
+            }
+        });
 
     $scope.cantidadProducto = function(accion, index, elemento) {
         switch(accion) {
@@ -28,7 +38,7 @@ _tess.controller("producto", function($rootScope, $scope, $http, $routeParams, c
                 break;
 
             case "del":
-                $scope.restarPrecio(index);
+                if($scope.temp[index]) $scope.restarPrecio(index);
 
                 var del = angular.element(elemento.currentTarget);
 
@@ -40,10 +50,7 @@ _tess.controller("producto", function($rootScope, $scope, $http, $routeParams, c
     };
 
     $scope.anadirProductoCarrito = function(addProducto, referencia) {
-        $scope.addProducto = {};
-        $scope.addProducto[referencia] = addProducto;
-
-        carritoCompras.update($scope.IDFBUsuario, $scope.addProducto);
+        carritoCompras.update($scope.IDFBUsuario, addProducto, referencia);
     }
 
     $scope.listado = function(elementos) {

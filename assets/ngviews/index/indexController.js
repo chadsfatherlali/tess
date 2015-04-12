@@ -23,6 +23,9 @@ _tess.controller("index", function($rootScope, $scope, $routeParams, $location, 
         ngProgress.complete();
     });
 
+    $scope.$on("updateSideBarCarritoCompra", function(event, obj) {
+        console.log("Update Carrito de compras", obj);
+    });
 
     (function(d, s, id){
         var js, fjs = d.getElementsByTagName(s)[0];
@@ -106,8 +109,4 @@ _tess.controller("index", function($rootScope, $scope, $routeParams, $location, 
         
         $scope.status.isopen = !$scope.status.isopen;
     };
-    
-    /*$scope.Acomprar = function(obj) {
-        $scope.$broadcast("Acomprar", obj);
-    };*/
 });

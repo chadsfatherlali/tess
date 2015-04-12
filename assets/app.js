@@ -82,8 +82,6 @@ _tess.factory("httpInterceptor", function($rootScope) {
        },
 
         "response": function(response) {
-
-            
             $rootScope.$broadcast("completehttprequest");
             return response;
         },
@@ -98,7 +96,7 @@ _tess.factory("httpInterceptor", function($rootScope) {
     };
 });
 
-_tess.factory("carritoCompras", function() {
+_tess.factory("carritoCompras", function($rootScope) {
 
     function setLocalStorage(key, obj) {
         localStorage.setItem(key, JSON.stringify(obj));
@@ -133,6 +131,8 @@ _tess.factory("carritoCompras", function() {
             obj.compras[referencia] = compra;
 
             setLocalStorage(carritoKey, obj);
+
+            $rootScope.$broadcast("updateSideBarCarritoCompra", obj);
         }
     }
 });
@@ -144,8 +144,8 @@ _tess.factory("objReorder", function() {
             var aux = 0;
 
             _.mapObject(obj, function(v, k) {
-                if(k === "precioTotal") {
-                    orderObj.precioTotal = v;
+                if(isNaN(k)) {
+                    orderObj[k] = v;
                 }
 
                 else {

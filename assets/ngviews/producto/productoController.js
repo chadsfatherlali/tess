@@ -1,4 +1,4 @@
-_tess.controller("producto", function($rootScope, $scope, $http, $routeParams, carritoCompras, $compile, objReorder) {
+_tess.controller("producto", function($rootScope, $scope, $http, $routeParams, carritoCompras, $compile, objReorder, $location) {
     var html = "<div id=\"[['compra' | generateid ]]\" compra></div>";
 
     $scope.productoAcomprar = {};
@@ -24,7 +24,7 @@ _tess.controller("producto", function($rootScope, $scope, $http, $routeParams, c
             var comprasLength = Object.keys(compras).length;
 
             if (comprasLength > 0) {
-                $scope.cantidadProductos = new Array(comprasLength - 1);
+                $scope.cantidadProductos = new Array(comprasLength - 2);
                 $scope.temp = compras;
             }
         });
@@ -47,10 +47,20 @@ _tess.controller("producto", function($rootScope, $scope, $http, $routeParams, c
                 delete $scope.temp[index];
                 break;
         }
+
+        $scope.temp._id = $scope.productoAcomprar._id;
+        $scope.temp.archivo = $scope.productoAcomprar.archivo;
+
+        $scope.actualizarCarrito($scope.temp, $scope.productoAcomprar.referencia);
     };
 
-    $scope.anadirProductoCarrito = function(addProducto, referencia) {
+    $scope.actualizarCarrito = function(addProducto, referencia, relocate) {
+        addProducto._id = $scope.productoAcomprar._id;
+        addProducto.archivo = $scope.productoAcomprar.archivo;
+
         carritoCompras.update($scope.IDFBUsuario, addProducto, referencia);
+
+        if(relocate) $location.url("/index");
     }
 
     $scope.listado = function(elementos) {

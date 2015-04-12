@@ -23,11 +23,11 @@
                         </div>
 
                         <div>
-                            <button class="btn btn-success btn-xs" role="button" data-id="[[rndKEY]]" ng-click="cantidadProducto('add', rndKEY, $event)"><span class="glyphicon glyphicon-plus-sign"></span></button>
+                            <button class="btn btn-success btn-xs" role="button" ng-click="cantidadProducto('add', null, $event)"><span class="glyphicon glyphicon-plus-sign"></span></button>
                         </div>
 
-                        <button class="btn btn-success btn-sm" role="button" ng-click="anadirProductoCarrito(temp, productoAcomprar.referencia)">Actualizar el carrito <span class="glyphicon glyphicon-shopping-cart"></span> <span ng-if="temp.precioTotal" class="badge">[[temp.precioTotal]] $</span></button>
-                        <a href="#/index" type="button" class="btn btn-danger btn-sm" role="button"><span class="glyphicon glyphicon-home"></span></a>
+                        <button class="btn btn-success btn-sm" role="button" ng-click="actualizarCarrito(temp, productoAcomprar.referencia)">Ir al carrito <span class="glyphicon glyphicon-shopping-cart"></span> <span ng-if="temp.precioTotal" class="badge">[[temp.precioTotal]] $</span></button>
+                        <button ng-click="actualizarCarrito(temp, productoAcomprar.referencia, true)" href="#/index" type="button" class="btn btn-warning btn-sm" role="button"><span class="glyphicon glyphicon-home"></span></button>
                     </form>
                 </div>
             </div>
